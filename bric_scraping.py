@@ -4,7 +4,7 @@ import numpy
 address = req.get("https://www.ibric.org/myboard/list.php?Board=job_recruit&selflevel=1") #브릭 대학원생 채용정보사이트
 address.raise_for_status()
 soup = bfu(address.text, 'html.parser')
-#https://www.ibric.org/myboard/list.php?Board=job_recruit&Page=2&selflevel=1
+#https://www.ibric.org/myboard/list.php?Board=job_recruit&Page=2&selflevel=1?
 
 start = 11 # 몇페이지 부터 찾을지 너무많아서 일단 10값으로 설정 나중에 1로 상수 값으로 전환해야함
 
