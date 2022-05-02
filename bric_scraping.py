@@ -1,12 +1,14 @@
 import requests as req
 from bs4 import BeautifulSoup as bfu
 import numpy
+
 address = req.get("https://www.ibric.org/myboard/list.php?Board=job_recruit&selflevel=1") #브릭 대학원생 채용정보사이트
 address.raise_for_status()
 soup = bfu(address.text, 'html.parser')
 #https://www.ibric.org/myboard/list.php?Board=job_recruit&Page=2&selflevel=1?
 
-start = 11 # 몇페이지 부터 찾을지 너무많아서 일단 10값으로 설정 나중에 1로 상수 값으로 전환해야함
+# 몇페이지 부터 찾을지 너무많아서 일단 10값으로 설정 나중에 1로 상수 값으로 전환해야함
+
 
 def get_recruitment_contents_number():
     #채용정보 총 갯수 반환
@@ -62,17 +64,17 @@ def print_recruitment_contents_all():
         if(int(number) == 1): # 각 채용 정보마다 넘버가 있다. 마지막이 1번인데 그 1번에 도달하면 브레이크
             break ##
 
-def filtering_find_number(arr):
-    #arr로 받은 배열 안에 있는 단어가 있는 채용정보만 찾아서 리턴해줌
+def print_filtering_find_number(arr,start):
+    #arr로 받은 배열 안에 있는 단어가 있는 채용정보만 찾아 리턴해줌
     # 라고 생각했지만 생각해보니 번호만 알면 정보 다 가져올 수 있네..?
-    filtering_arr=[]
-    page_number = start # 시작하고싶은 페이지 부터 번호 입력해주면 됨
+    page_number = int(start) # 시작하고싶은 페이지 부터 번호 입력해주면 됨
     while(True):
         a = req.get("https://ibric.org/myboard/list.php?Board=job_recruit&Page=" + str(
             page_number) + "&selflevel=1")  # 브릭 대학원생 채용정보사이트
         a.raise_for_status()
         s = bfu(a.text, 'html.parser')
         information_number = 3 #찾고자하는 리스트들이 3부터 2씩증가함
+        print("=======================================",page_number,"페이지 =======================================")
         while (s.select_one('body table:nth-child(2)  tr td:nth-child(1) table  tr:nth-child(2) td table  tr:nth-child(2)\
                                td table  tr:nth-child(2) td table  tr:nth-child(' + str(
             information_number) + ') td:nth-child(2) a') != None):
@@ -82,22 +84,27 @@ def filtering_find_number(arr):
             main_department = s.select_one('body table:nth-child(2)  tr td:nth-child(1) table  tr:nth-child(2) td table  tr:nth-child(2)\
                                            td table  tr:nth-child(2) td table  tr:nth-child(' + str(information_number) + ') \
                                            td:nth-child(2) a').get_text()  # 모집학교학과 정보 저장 원하는 정보를 찾기위해 필요
+            degree = s.select_one('body table:nth-child(2)  tr td:nth-child(1) table  tr:nth-child(2) td table  tr:nth-child(2)\
+                                            td table  tr:nth-child(2) td table  tr:nth-child(' + str( information_number) + ') \
+                                            td:nth-child(4)').get_text()  # 모집 학위저장
+            deadline = s.select_one('body table:nth-child(2)  tr td:nth-child(1) table  tr:nth-child(2) td table  tr:nth-child(2)\
+                                            td table  tr:nth-child(2) td table  tr:nth-child(' + str( information_number) + ')\
+                                             td:nth-child(5)').get_text()  # 모집 마감일 저장
+            main_department_link = s.select_one('body table:nth-child(2)  tr td:nth-child(1) table  tr:nth-child(2) td table  tr:nth-child(2)\
+                                           td table  tr:nth-child(2) td table  tr:nth-child(' + str(information_number) + ') \
+                                           td:nth-child(2) a').get('href')  # 해당 링크
+            main_department_link = "https://www.ibric.org/myboard/"+main_department_link # 앞에 링크 연결시켜주는 구문
 
             for i in range(0,len(arr)):
                 if(main_department.find(str(arr[i])) != -1): # if 조건문 안에 값이 -1이 아닐시 찾은거 즉 모집문구에 원하는 해당 단어가 없을시
-                    filtering_arr.append(number)
+                    print("번호 : "+number+"  || 학위 :"+degree+"  || 마감날짜 :"+deadline+"  || 정보 :"+main_department)
+                    print("해당 링크 바로가기 : "+main_department_link)
             information_number = information_number + 2
 
         if (int(number) == 1):  # 각 채용 정보마다 넘버가 있다. 마지막이 1번인데 그 1번에 도달하면 브레이크
             break
         page_number = page_number + 1
-    return filtering_arr
-
-def find_print(arr):
-    #찾은 값들 프린트
-    numlist = filtering_find_number(arr)
-    print(numlist)
+    return None
 
 
-arr = ["공학","시스템","컴퓨터","정보","합성",]
-find_print(arr)
+
