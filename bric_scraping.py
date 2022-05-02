@@ -99,6 +99,7 @@ def print_filtering_find_number(arr,start):
                 if(main_department.find(str(arr[i])) != -1): # if 조건문 안에 값이 -1이 아닐시 찾은거 즉 모집문구에 원하는 해당 단어가 없을시
                     print("번호 : "+number+"  || 학위 :"+degree+"  || 마감날짜 :"+deadline+"  || 정보 :"+main_department)
                     print("해당 링크 바로가기 : "+main_department_link)
+                    break
             information_number = information_number + 2
 
         if (int(number) == 1):  # 각 채용 정보마다 넘버가 있다. 마지막이 1번인데 그 1번에 도달하면 브레이크
