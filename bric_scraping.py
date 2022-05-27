@@ -1,7 +1,6 @@
 import requests as req
 from bs4 import BeautifulSoup as bfu
-import numpy
-
+#
 address = req.get("https://www.ibric.org/myboard/list.php?Board=job_recruit&selflevel=1") #브릭 대학원생 채용정보사이트
 address.raise_for_status()
 soup = bfu(address.text, 'html.parser')

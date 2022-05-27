@@ -1,6 +1,6 @@
 import pyautogui
 import pyperclip 
-
+#
 # =======================마우스의 이동  모든 함수에서 duration 사용 가능 
 # size = pyautogui.size() #현재 윈도우 창 사이즈를 배열로 반환 받음 0번째 가로 1번째 높이
 # pyautogui.moveTo(100,100)#마우스를 해당 좌표로 이동시킴 왼쪽위가 x 0, y 0임
