@@ -22,4 +22,4 @@ plt.plot(main_data['date'],main_data['rank'],label='product_name')
 plt.xlabel('date')
 plt.ylabel('rank')
 plt.show()
-
+#데이터 프레임 활용해서 그래프 그리는 영상보고 하면될듯
