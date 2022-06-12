@@ -25,7 +25,7 @@ for i in range(100):
 #numpy형식을 배열형태로 저장해줌
 #여기까지 시행시 name_arr에 상품명이 리스트로 저장되어 들어감 (중복없음)
 
-
+#print(df[(df['product_name'] == name_arr[0])]) #0번째 인덱스값 프린트로 순위변화를 텍스트로 알려줌
 #=======================그래프를 그림
 for i in range(100):
     boxdf = df[(df['product_name'] == name_arr[i])]
