@@ -46,11 +46,13 @@ def delete_overlap(arr): #중복제거해주는 함수
 name_arr = delete_overlap(name_arr)
 
 
-#print(df[(df['product_name'] == name_arr[0])]) #0번째 인덱스값 프린트로 순위변화를 텍스트로 알려줌
+print(df[(df['product_name'] == name_arr[0])]) #0번째 인덱스값 프린트로 순위변화를 텍스트로 알려줌
+boxdf = df[(df['product_name'] == name_arr[0])]#df 에서 i와 같은 값만 가져와서 boxdf에 넣음
+plt.plot(boxdf['date'],boxdf['rank'])
 #=======================그래프를 그림
-for i in name_arr:
-    boxdf = df[(df['product_name'] == i)]#df 에서 i와 같은 값만 가져와서 boxdf에 넣음
-    plt.plot(boxdf['date'],boxdf['rank'])
+# for i in name_arr:
+#     boxdf = df[(df['product_name'] == i)]#df 에서 i와 같은 값만 가져와서 boxdf에 넣음
+#     plt.plot(boxdf['date'],boxdf['rank'])
 #배열안에 저장되어있는 이름으로 값을 가져와서 배열의 길이의 데이터를 그래프를 중복해서 그려줌
 
 plt.title("DATA SORTING HW")
