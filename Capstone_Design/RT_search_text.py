@@ -1,4 +1,4 @@
-# Real Time search news text scraype
+# Real Time search news text scraype 
 # 기준 사이트 시그널실시간 Json 스크래핑 구조
 import urllib.request as req
 import json, datetime
