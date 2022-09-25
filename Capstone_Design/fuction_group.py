@@ -1,7 +1,7 @@
 import re, datetime,json
 import urllib.request as req
 
-# Real Time search news text scraype ================================
+# Real Time search and news text scraype ================================
 # 기준 사이트 시그널실시간 Json 스크래핑 구조
 RT_keyword = [datetime.datetime.now()] # 실시간 검색어 담을 배열
 RT_news = [datetime.datetime.now()] # 실시간 뉴스 담을 배열
@@ -23,8 +23,9 @@ def print_dic(dic):
 
 # 뉴스기사 검색에 이용될 범위시간과 현시간 배열로 반환====================
 def input_time():
+    date_range = 1 # 해당 변수 안에 값이 뉴스범위 ex) 2이면 2일전 뉴스까지만 보여줌
     t = str(datetime.datetime.now()).split(".")[0]
     t = t.replace("-",".").replace(" ",".").replace(":",".")
     t = t.split("."+t.split(".")[-1])[0]
-    time = [re.sub(t.split(".")[3],str(int(t.split(".")[3])-1),t),t]
+    time = [re.sub(t.split(".")[3],str(int(t.split(".")[3])-date_range),t),t]
     return time
