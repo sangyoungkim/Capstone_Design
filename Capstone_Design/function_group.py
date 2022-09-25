@@ -36,6 +36,7 @@ def keyword_stock_news(keyword):
 # 배열로 입력 받은 키워드에 맞는 뉴스를 가져와서 dic로 반환
 # 가장 높은 시간 복잡도(최적화 하려면..?)
     dic = {}
+    stock = RT_search_stock(RT_search_text())
     for i in keyword:
        link = requ.get("https://mweb-api.stockplus.com/api/search/news.json?keyword=%s"%re.sub(" ","%20",str(i)))
        link.raise_for_status()
@@ -46,14 +47,16 @@ def keyword_stock_news(keyword):
         news_time = datetime.datetime.strptime(news_time, '%Y-%m-%d %H:%M:%S').date()
         time = datetime.datetime.strptime(input_time(), '%Y-%m-%d %H:%M:%S').date() 
         if(str(news_time - time) == "0:00:00" or str(news_time - time) == "-1 day, 0:00:00"):
-           # word = i.split(" ")
-           # temp = False
-           # for w in word:
-           #     if(str(json_file['news'][j]['title']).find(str(w))!= -1):
-           #         temp = True
-           # if(temp):
-           #     box.append(str(json_file['news'][j]['url']))
-           box.append(str(json_file['news'][j]['url']))
+            word = i.split(" ")
+            temp = False
+            for w in word:
+                if(str(json_file['news'][j]['title']).find(str(w))!= -1):
+                    temp = True
+            for s in stock[i]:
+                if(str(json_file['news'][j]['title']).find(str(s))!= -1):
+                    temp = True
+            if(temp):
+                box.append(str(json_file['news'][j]['url']))
         if(len(box) > 0): dic[i] = box
     return dic
 
