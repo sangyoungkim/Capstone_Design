@@ -10,6 +10,10 @@ stock_dic = func.RT_search_stock(RT_search_text)
 #         if(str(j) == str(i)):
 #             print(a[j])
 #     print("=====================")
+print("===== 현재실시간 검색어 =====")
+for i in RT_search_text:
+    print(i)
+print("===== 추천 주식 =====")
 a = func.keyword_stock_news_naver(RT_search_text)
 for i in a :
     print(i,": ",end='')
