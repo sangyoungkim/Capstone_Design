@@ -2,21 +2,13 @@ import function_group as func
 
 RT_search_text = func.RT_search_text()
 stock_dic = func.RT_search_stock(RT_search_text)
-# a = func.keyword_stock_news_plus(RT_search_text)
-# for i in RT_search_text:
-#     print(i)
-#     print(stock_dic[i])
-#     for j in a:
-#         if(str(j) == str(i)):
-#             print(a[j])
-#     print("=====================")
-print("===== 현재실시간 검색어 =====")
-for i in RT_search_text:
-    print(i)
-print("===== 추천 주식 =====")
-a = func.keyword_stock_news_naver(RT_search_text)
-for i in a :
-    print(i,": ",end='')
+
+a = func.keyword_stock_news_naver_2(RT_search_text,False)
+for i in a:
+    print("실검:",i)
     for j in a[i]:
-        print(",",j,end='')
+        print("주식:",j)
+        print("<관련기사>")
+        for k in a[i][j]:
+            print(k)
     print("")
