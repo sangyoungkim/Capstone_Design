@@ -1,7 +1,11 @@
-import re, datetime,json
+from ast import Delete
+import re,json
+from datetime import datetime 
 import urllib.request as req
 from bs4 import BeautifulSoup as bfu
 import requests as requ
+import pandas as pd
+import numpy as np
 
 def RT_search_text(text = True):
 # 실검 배열로 반환, False시 뉴스 반환
@@ -62,3 +66,46 @@ def keyword_stock_news_naver_2(keyword,time_range = True):
                 box_arr = []
     return dic
 
+def get_stock_information(stock,year=1):
+#입력한 주식 정보를 year전까지 정보 가져와서 보여줍니다.
+#충처는 네이버 증권입니다.
+    # 주식 코드 찾아서 stockcode에 넣음
+    link = requ.get("https://mweb-api.stockplus.com/api/search/news.json?keyword="+str(stock))
+    link.raise_for_status()
+    json_file = str(json.loads(str(bfu(link.text, 'html.parser'))))
+    while(True):
+        if json_file.find("shareName': '"+str(stock)+"', 'shortCode':") == -1:
+            print(json_file)
+            print(" 정확한 주식명을 입력하세요")
+            return None
+        else:
+            stockcode = json_file.split("shareName': '"+str(stock)+"', 'shortCode': 'A")[1].split("', '")[0]
+            break
+
+    # 주식코드 넣어서 해당 주식 정보가져옴
+    now = datetime.now()
+    endtime = str(now).replace("-","").split(" ")[0]
+    starttime = starttime = str(int(now.year) - int(year))+str(now.month)+str(now.day)
+    stock_information_link = \
+    "https://api.finance.naver.com/siseJson.naver?symbol="\
+    +str(stockcode)+"&requestType=1&startTime="+starttime+"&endTime="+endtime+"&timeframe=day"
+    link = requ.get(stock_information_link)
+    link.raise_for_status()
+    soup = bfu(link.text, 'lxml')
+    df = soup.select_one("body").get_text().replace('"',"").replace("\n","").replace("\t","").replace(" ","").replace("[","").replace("]","").replace("'","")
+    arr = np.array([])
+    box = ""
+    for i in df:
+        if (i == ","):
+            arr = np.append(arr,box)
+            box = ""
+        else:
+            box += i
+    arr = np.append(arr,df[-5::1])
+    arr = arr.reshape(-1,7)
+    df = pd.DataFrame(arr)
+    df = df.drop(columns=[5,6], axis=1) #거래량 외국인 소진율 삭제
+    df = df.drop(index=0, axis=0)
+    df.columns = ['날짜', '시가', '고가', '저가', '종가']
+    print(df)
+get_stock_information("용평리조트",1)
