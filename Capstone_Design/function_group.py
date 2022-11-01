@@ -68,7 +68,7 @@ def keyword_stock_news_naver_2(keyword,time_range = True,news_num=3):
                 box_arr = []
     return dic
 
-def get_stock_information(stock,year=1):
+def get_stock_information(stock,year=2):
 #입력한 주식 정보를 year전까지 정보 가져와서 보여줍니다.
 #출처는 네이버 증권입니다.
     # 주식 코드 찾아서 stockcode에 넣음
@@ -110,3 +110,9 @@ def get_stock_information(stock,year=1):
     df.columns = ['날짜', '시가', '고가', '저가', '종가']
     
     return df
+a = get_stock_information("삼성전자")
+print(a)
+
+#====================================================================
+
+user = ['삼성전자','용평리조트']
