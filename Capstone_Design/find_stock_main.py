@@ -3,7 +3,7 @@ import function_group as func
 RT_search_text = func.RT_search_text()
 stock_dic = func.RT_search_stock(RT_search_text)
 
-a = func.keyword_stock_news_naver_2(RT_search_text,False,5)
+a = func.keyword_stock_news_naver_2(RT_search_text,False,4)
 for i in a:
     print("실검:",i)
     for j in a[i]:
