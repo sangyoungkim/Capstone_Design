@@ -1,3 +1,4 @@
+#%%
 import re,json
 from datetime import datetime 
 import urllib.request as req
@@ -110,12 +111,10 @@ def get_stock_information(stock,year=2):
     df.columns = ['날짜', '시가', '고가', '저가', '종가']
     
     return df
-a = get_stock_information("삼성전자")
-print(a)
+
 
 #====================================================================
 
-user = ['삼성전자','용평리조트']
 #1. 깃 깃허브 사용
 #2. 상영 코드 설명
 #3. 프론트 ui로 속도 느리거 덮는거 의논
@@ -124,3 +123,85 @@ user = ['삼성전자','용평리조트']
 #최종 진우형이 코드 이어서 작성
 
 # 진이는 프론트 디자인 설계 끝나는대로 백 연동법 의논 상의
+
+#====================================================================
+# 주식 분석
+
+import matplotlib.pyplot as plt 
+from sklearn.svm import SVR
+from sklearn.metrics import mean_squared_error, mean_absolute_error 
+
+get_df = get_stock_information("램테크놀러지",3)
+stock_df = get_df.astype(int) # obj -> int
+stock_df = stock_df.rename(columns={'날짜':'Date','시가':'Open', '고가':'High', '저가':'Low', '종가':'Close'})
+print(stock_df.info())
+
+# 이동평균선
+stock_df['5'] = stock_df['Close'].rolling(5).mean()
+stock_df['20'] = stock_df['Close'].rolling(20).mean()
+stock_df['60'] = stock_df['Close'].rolling(60).mean()
+stock_df['120'] = stock_df['Close'].rolling(120).mean()
+
+plt.figure(figsize=(10,7))
+plt.plot(stock_df.index,stock_df['Close'],',')
+plt.plot(stock_df['5'], label='5')
+plt.plot(stock_df['20'],label='20')
+plt.plot(stock_df['60'],label='60')
+plt.plot(stock_df['120'],label='120')
+plt.xlabel('DATE')
+plt.ylabel('Close Price')
+plt.legend()
+
+plt.show
+
+# 이동평균선 보고 상승세 파악
+if stock_df['5'].iloc[-1]<stock_df['20'].iloc[-1] and stock_df['20'].iloc[-1]<stock_df['60'].iloc[-1] and stock_df['60'].iloc[-1]<stock_df['120'].iloc[-1]:
+    print("상승세")
+else:
+    print("크게 추천하지 않음")
+
+# SVM으로 다음날 주식 가격 예측
+stock_df_td = stock_df.tail(200) # 최근200일정도만 training
+# print(stock_df_td)
+# print(stock_df.info())
+
+# stock_df_train = stock_df.tail(len(stock_df_td)-1) # 확인용
+stock_df_close = stock_df_td['Close']
+stock_df_close = stock_df_close.values
+
+days=[]
+for i in range(1,len(stock_df_td)+1):
+    days.append([int(i)])
+
+# training
+rbf_svr = SVR(kernel='rbf', C=10000, gamma=0.0001)
+rbf_svr.fit(days,stock_df_close)
+
+lin_svr = SVR(kernel="linear", C=10000)
+lin_svr.fit(days,stock_df_close)
+
+poly_svr = SVR(kernel="poly", C=10000, degree=2)
+poly_svr.fit(days,stock_df_close)
+
+# predict
+day = [[len(days)+1]]
+print("RBF SVR 예측가격:",rbf_svr.predict(day))
+print("Linear SVR 예측가격:",lin_svr.predict(day))
+print("Poly SVR 예측가격:",poly_svr.predict(day))
+
+pred_price = []
+for i in range(len(days)):
+    pred_price.append(rbf_svr.predict([[i]]))
+
+plt.figure(figsize=(10,7))
+plt.plot(stock_df_td.index,stock_df_td['Close'])
+plt.plot(pred_price,'o')
+# plt.plot(sam_df['20'],label='20')
+# plt.plot(sam_df['60'],label='60')
+# plt.plot(sam_df['120'],label='120')
+plt.xlabel('DATE')
+plt.ylabel('Close Price')
+plt.legend()
+
+plt.show
+# %%
