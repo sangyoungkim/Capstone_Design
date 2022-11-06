@@ -42,6 +42,7 @@ def recommended_stock(stock,y):
         print("이동평균선 분석 결과 현재 주식을 크게 추천하지 않습니다.")
     
 
+# 주가 예측
 def predict_stock(stock,y):
     stock_df = get_stock(stock,y)
     # SVM으로 다음날 주식 가격 예측
