@@ -27,13 +27,15 @@ def RT_search_stock(key_word):
     stock_site_link = "https://mweb-api.stockplus.com/api/search/news_related_assets.json?keyword="
     for i in range(0,10):
         address = requ.get(re.sub(" ","%20",stock_site_link + str(key_word[i]) + "&limit=5"))
-        address.raise_for_status()
-        soup = bfu(address.text, 'html.parser')
-        json_infomation = json.loads(str(soup))
-        box = []
-        for j in range(0,len(json_infomation["newsRelatedAssets"])):
-            box.append(json_infomation["newsRelatedAssets"][j]["name"])
-        RT_keyword_news_dic[str(key_word[i])] = box
+        if(address.status_code == 200):
+            soup = bfu(address.text, 'html.parser')
+            json_infomation = json.loads(str(soup))
+            box = []
+            for j in range(0,len(json_infomation["newsRelatedAssets"])):
+                box.append(json_infomation["newsRelatedAssets"][j]["name"])
+            RT_keyword_news_dic[str(key_word[i])] = box
+        else:
+            pass
     return RT_keyword_news_dic
 
 def keyword_stock_news_naver(keyword,time_range = True,news_num=3):
@@ -59,9 +61,11 @@ def keyword_stock_news_naver(keyword,time_range = True,news_num=3):
                 if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area").get_text().find(str(j)) == -1): 
                     break
                 else:
-                    box_arr.append("제목 : " + soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text() + " 링크 : " \
-                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href'] + " 사진 : "\
-                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src'])
+                    box_arr.append("제목 : " + soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text() + " || 링크 : " \
+                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href'] + " || 사진 : "\
+                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']+ " || 본문미리보기 : "\
+                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") .dsc_wrap").get_text()
+                        )
                     num = num +1
             box_arr = list(set(box_arr))
             box_dic[j] = box_arr
