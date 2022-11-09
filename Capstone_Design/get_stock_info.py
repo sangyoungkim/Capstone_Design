@@ -38,43 +38,47 @@ def RT_search_stock(key_word):
             pass
     return RT_keyword_news_dic
 
-def keyword_stock_news_naver(keyword,time_range = True,news_num=3):
+def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_num=8):
 # 배열로 입력 받은 키워드에 맞는 뉴스를 가져와서 dic로 반환
 # 실검과 증권플러스추천 주식 같이 검색해서 나오는 뉴스에서 주식키워드 찾는 방식
-    dic = {}
+    RT_arr = []
+    stock_arr = []
+    news_info = []
     stock = RT_search_stock(keyword)
     if(time_range): time_range = 12
     else: time_range = 4
-    for i in stock:
-        box_dic = {}
+    for RT in stock:
         box_arr = []
-        for j in stock[i]:
-            word = str(i) + str(j)
-            word.replace(" ","%")
-            link = requ.get("https://search.naver.com/search.naver?where=news&query="+word+"&sm=tab_opt&sort=0&photo=0&field=0&pd="+str(time_range)+"&start=1")
-            link.raise_for_status()
-            soup = bfu(link.text, 'html.parser')
-            num = 1
-            while(len(box_arr)<int(news_num) and len(stock[i]) != 0 ):
-                if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area") == None): 
-                    break
-                if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area").get_text().find(str(j)) == -1): 
-                    break
-                else:
-                    box_arr.append("제목 : " + soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text() + " || 링크 : " \
-                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href'] + " || 사진 : "\
-                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']+ " || 본문미리보기 : "\
-                        + soup.select_one(".list_news .bx:nth-child("+str(num)+") .dsc_wrap").get_text()
-                        )
-                    num = num +1
-            box_arr = list(set(box_arr))
-            box_dic[j] = box_arr
-            if(len(box_arr) >= int(news_num)-1):
-                dic[i] = box_dic
+        for RT_stock in stock[RT]:
+            if(len(stock[RT]) != 0):
+                word = str(RT) +" " +str(RT_stock)
+                word.replace(" ","%")
+                link = requ.get("https://search.naver.com/search.naver?where=news&query="+word+"&sm=tab_opt&sort=0&photo=0&field=0&pd="+str(time_range)+"&start=1")
+                link.raise_for_status()
+                soup = bfu(link.text, 'html.parser')
+                num = 1
                 box_dic = {}
-                box_arr = []
-    return dic
-
+                a = 0
+                while(a<int(max_new_num)):
+                    if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area") == None): 
+                        break #검색시 기사가 없으면
+                    if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area").get_text().find(str(RT_stock)) != -1): 
+                        box_dic["제목"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text()
+                        box_dic["내용"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .dsc_wrap").get_text()
+                        box_dic["링크"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href']
+                        box_dic["사진"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']
+                        a = a + 1
+                    num = num + 1
+                if(a >= int(min_news_num)):
+                    if (RT not in RT_arr):RT_arr.append(RT)
+                    news_info.append([box_dic])
+                    box_dic = {}
+                    box_arr.append(RT_stock)
+                a = 0
+                num = 1
+        if(box_arr not in stock_arr and len(box_arr) > 0 ):stock_arr.append(box_arr)
+    return RT_arr , stock_arr , news_info
+            
 def get_stock_information(stock,year=2):
 #입력한 주식 정보를 year전까지 정보 가져와서 보여줍니다.
 #출처는 네이버 증권입니다.
@@ -112,10 +116,17 @@ def get_stock_information(stock,year=2):
     arr = np.append(arr,df[-5::1])
     arr = arr.reshape(-1,7)
     df = pd.DataFrame(arr)
-    df = df.drop(columns=[5,6], axis=1) #거래량 외국인 소진율 삭제
+    df = df.drop(columns=[5,6], axis=1) #거래량, 외국인 소진율 삭제
     df = df.drop(index=0, axis=0)
     df.columns = ['날짜', '시가', '고가', '저가', '종가']
     
     return df
-
-print(keyword_stock_news_naver(RT_search_text()))
+a,b,c = keyword_stock_news_naver(RT_search_text(),True,2,4)
+print(a)
+print("==================")
+print(b)
+print("==================")
+for i in c :
+    print(i)
+    print("==================")
+# %%
