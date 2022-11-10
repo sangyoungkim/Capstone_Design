@@ -49,6 +49,7 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
     else: time_range = 4
     for RT in stock:
         box1_arr = []
+        box3_arr = []
         for RT_stock in stock[RT]:
             if(len(stock[RT]) != 0):
                 word = str(RT) +" " +str(RT_stock)
@@ -75,12 +76,13 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
                     box_dic = {}
                 if(a >= int(min_news_num)):
                     if (RT not in RT_arr):RT_arr.append(RT)
-                    news_info.append(box2_arr)
+                    box3_arr.append(box2_arr)
                     box2_arr = []
                     box_dic = {}
                     box1_arr.append(RT_stock)
                 a = 0
                 num = 1
+        if(len(box3_arr)>0):news_info.append(box3_arr)
         if(box1_arr not in stock_arr and len(box1_arr) > 0 ):stock_arr.append(box1_arr)
     return RT_arr , stock_arr , news_info
             
@@ -126,10 +128,12 @@ def get_stock_information(stock,year=2):
     df.columns = ['날짜', '시가', '고가', '저가', '종가']
     
     return df
-a,b,c = keyword_stock_news_naver(RT_search_text(),True,2,4)
+a,b,c = keyword_stock_news_naver(RT_search_text(),True,2,3)
 print(a)
 print("==================")
 print(b)
 print("==================")
-print(c)
+for i in c:
+    print(i)
+    print("-------------------")
 # %%
