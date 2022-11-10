@@ -66,7 +66,8 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
                         box_dic["제목"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text()
                         box_dic["내용"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .dsc_wrap").get_text()
                         box_dic["링크"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href']
-                        box_dic["사진"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']
+                        if(soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img") == None): box_dic["사진"+str(num)] = None
+                        else : box_dic["사진"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']
                         a = a + 1
                     num = num + 1
                 if(a >= int(min_news_num)):
