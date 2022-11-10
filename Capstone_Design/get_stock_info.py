@@ -64,11 +64,11 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
                     if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area") == None): 
                         break #검색시 기사가 없으면
                     if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area").get_text().find(str(RT_stock)) != -1): 
-                        box_dic["제목"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text()
-                        box_dic["내용"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .dsc_wrap").get_text()
-                        box_dic["링크"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href']
+                        box_dic["제목"] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_tit").get_text()
+                        box_dic["내용"] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .dsc_wrap").get_text()
+                        box_dic["링크"] = soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area>a").attrs['href']
                         if(soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img") == None): box_dic["사진"+str(num)] = None
-                        else : box_dic["사진"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']
+                        else : box_dic["사진"] = soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']
                         a = a + 1
                     num = num + 1
                     box2_arr.append(box_dic)
