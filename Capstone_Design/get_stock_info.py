@@ -48,7 +48,7 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
     if(time_range): time_range = 12
     else: time_range = 4
     for RT in stock:
-        box_arr = []
+        box1_arr = []
         for RT_stock in stock[RT]:
             if(len(stock[RT]) != 0):
                 word = str(RT) +" " +str(RT_stock)
@@ -58,6 +58,7 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
                 soup = bfu(link.text, 'html.parser')
                 num = 1
                 box_dic = {}
+                box2_arr = []
                 a = 0
                 while(a<int(max_new_num)):
                     if(soup.select_one(".list_news .bx:nth-child("+str(num)+") .news_area") == None): 
@@ -70,14 +71,17 @@ def keyword_stock_news_naver(keyword,time_range = True,min_news_num=3,max_new_nu
                         else : box_dic["사진"+str(num)] = soup.select_one(".list_news .bx:nth-child("+str(num)+") a>img").attrs['src']
                         a = a + 1
                     num = num + 1
+                    box2_arr.append(box_dic)
+                    box_dic = {}
                 if(a >= int(min_news_num)):
                     if (RT not in RT_arr):RT_arr.append(RT)
-                    news_info.append([box_dic])
+                    news_info.append(box2_arr)
+                    box2_arr = []
                     box_dic = {}
-                    box_arr.append(RT_stock)
+                    box1_arr.append(RT_stock)
                 a = 0
                 num = 1
-        if(box_arr not in stock_arr and len(box_arr) > 0 ):stock_arr.append(box_arr)
+        if(box1_arr not in stock_arr and len(box1_arr) > 0 ):stock_arr.append(box1_arr)
     return RT_arr , stock_arr , news_info
             
 def get_stock_information(stock,year=2):
@@ -127,7 +131,5 @@ print(a)
 print("==================")
 print(b)
 print("==================")
-for i in c :
-    print(i)
-    print("==================")
+print(c)
 # %%
