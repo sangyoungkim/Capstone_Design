@@ -54,30 +54,30 @@ def recommended_stock(stock,y):
       
       # 이동평균선 보고 배열도 분석
       if stock_df['5'].iloc[-1]>stock_df['60'].iloc[-1] and stock_df['20'].iloc[-1]>stock_df['60'].iloc[-1] and stock_df['60'].iloc[-1]>stock_df['120'].iloc[-1]:
-          recom = '정배열'
+          recom = '정배열(상승 추세)'
       elif stock_df['5'].iloc[-1]<stock_df['60'].iloc[-1] and stock_df['20'].iloc[-1]<stock_df['60'].iloc[-1] and stock_df['60'].iloc[-1]<stock_df['120'].iloc[-1]:
-          recom = '역배열'
+          recom = '역배열(하강 추세)'
       else:
           recom = '현재 배열 상태 없음'
 
       # 이동평균선 보고 크로스 분석   
       if stock_df['5'].iloc[-20]<stock_df['20'].iloc[-20] and stock_df['5'].iloc[-1]>stock_df['20'].iloc[-1]:
-          cross = '단기 골든 크로스(Golden Cross)'
+          cross = '단기 골든 크로스(상승 추세)'
       elif stock_df['5'].iloc[-20]>stock_df['20'].iloc[-20] and stock_df['5'].iloc[-1]<stock_df['20'].iloc[-1]:
-          cross = '단기 데드 크로스(Dead Cross)'
+          cross = '단기 데드 크로스(하강 추세)'
 
       elif stock_df['20'].iloc[-20]<stock_df['60'].iloc[-20] and stock_df['20'].iloc[-1]>stock_df['60'].iloc[-1]:
-          cross = '중기 골든 크로스(Golden Cross)'
+          cross = '중기 골든 크로스(상승 추세)'
       elif stock_df['20'].iloc[-20]>stock_df['60'].iloc[-20] and stock_df['20'].iloc[-1]<stock_df['60'].iloc[-1]:
-          cross = '중기 데드 크로스(Dead Cross)'
+          cross = '중기 데드 크로스(하강 추세)'
         
       elif stock_df['60'].iloc[-20]<stock_df['120'].iloc[-20] and stock_df['60'].iloc[-1]>stock_df['120'].iloc[-1]:
-          cross = '장기 골든 크로스(Golden Cross)'
+          cross = '장기 골든 크로스(상승 추세)'
       elif stock_df['60'].iloc[-20]>stock_df['120'].iloc[-20] and stock_df['60'].iloc[-1]<stock_df['120'].iloc[-1]:
-          cross = '장기 데드 크로스(Dead Cross)'
+          cross = '장기 데드 크로스(하강 추세)'
       
       elif stock_df['5'].iloc[-40]<stock_df['60'].iloc[-40] and stock_df['5'].iloc[-1]>stock_df['60'].iloc[-1] and stock_df['20'].iloc[-40]<stock_df['60'].iloc[-40] and stock_df['20'].iloc[-1]>stock_df['60'].iloc[-1] and stock_df['5'].iloc[-20]<stock_df['120'].iloc[-20] and stock_df['5'].iloc[-1]>stock_df['120'].iloc[-1] and stock_df['20'].iloc[-20]<stock_df['120'].iloc[-20] and stock_df['20'].iloc[-1]>stock_df['120'].iloc[-1]:
-          cross = '추세적 상승세'
+          cross = '강항 상승 추세'
       else:
           cross = '현재 크로스 상태 없음'
 
