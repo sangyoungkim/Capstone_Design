@@ -1,0 +1,163 @@
+body, div, h1, button{
+  margin: 0;
+  padding: 0;
+}
+body, button, input, select, td, textarea, th {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+a, a:hover{
+  text-decoration: none;
+  color: #333;
+}
+button, input{
+  vertical-align: middle;
+}
+button{
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: block;
+  width: 100%;
+  background-color: rgb(234, 232, 232);
+}
+
+header{
+  position: fixed;
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 0;
+  z-index: 100;
+}
+
+.wrap_header{
+  height: 72px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.title{
+  float: left;
+  line-height: 72px;
+}
+
+.title a{
+  display: block;
+  width: 130px;
+  font-size: medium;
+}
+
+.wrap_header .select{
+  float: left;
+  line-height: 72px;
+}
+.wrap_header select{
+  width: 500px;
+  height: 30px;
+}
+
+.wrap_header .right{
+  float: right;
+  line-height: 72px;
+}
+
+.wrap_header button{
+ width: 36px;
+ height: 36px;
+ border-radius: 18px;
+}
+
+.wrap_header button:hover{
+  background-color: #eee;
+}
+
+#mainContent{
+  padding-top: 72px;
+}
+
+article{
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: 182px;
+  max-width: 1400px;
+}
+
+article h3{
+  font-size: 36px;
+  line-height: 52px;
+}
+
+article span{
+  display: block;
+  font-weight: 700;
+}
+
+.cont_home{
+  margin: 0 -15px;
+}
+
+.row1{
+  height: 400px;
+  margin: 36px 18px;
+  padding: 54px 66px 0;
+  border-radius: 14px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 2px 5px 40px 0 rgb(0 0 0 / 8%);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.row1 div{
+  font-size: 30px;
+  font-weight: 500;
+}
+.row1 p{
+  color: #777;
+}
+.row1 #num{
+  position: absolute;
+  left: -60px;
+  top: 0px;
+  color: rgb(200, 200, 200);
+  font-size: 600px;
+  line-height: 350px;
+}
+.row1 span{
+  position: inherit;
+  font-size: 8em;
+  font-weight: 900;
+}
+
+.row2{
+  display: flex;
+  flex-wrap: wrap;
+}
+.row2 .wrqp_item{
+  position: relative;
+  padding: 0 18px;
+  width: 666px;
+}
+.row2 .item_card{
+  width: 100%;
+  height: calc(100vh - 143px);
+  margin-bottom: 63px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
+}

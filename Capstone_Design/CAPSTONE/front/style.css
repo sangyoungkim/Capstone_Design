@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Dongle:wght@300;400;700&family=Quicksand:wght@300;400&display=swap');
+/*
+font-family: 'NanumSquareLight';
+font-family: 'NanumSquare';
+font-family: 'NanumSquareBold';
+font-family: 'NanumSquareExtraBold';
+font-family: 'NanumSquareAcb';
+font-family: 'NanumSquareAceb';
+font-family: 'NanumSquareAcl';
+font-family: 'NanumSquareAcr';
+*/
+body, div, h1, button{
+  margin: 0;
+  padding: 0;
+}
+body, button, input, select, td, textarea, th {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #333;
+    border: none;
+}
+a, a:hover{
+  text-decoration: none;
+  color: #333;
+}
+button, input{
+  vertical-align: middle;
+}
+button{
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+body{
+  background-color: rgba(230, 230, 233, 0.09);
+}
+
+
+/**********header**********/
+header {
+  background-color: rgba(3, 3, 8, 0.591);
+  width: 100%;
+  height: 550px;
+  z-index: 100;
+  border-bottom: 1px solid rgb(229, 229, 229);
+  overflow: hidden;
+}
+header::after{
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: url("../CapstoneApp/static/images/back1.jpg");
+  position: absolute;
+  background-size: 100% 550px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.3;
+  background-repeat: no-repeat;
+}
+/*.wrap_header{
+  width: 1400px;
+  height: 280px;
+  padding: 40px 0;
+  margin: auto;
+  overflow: hidden;
+}*/
+header .left{
+  width: 730px;
+  float: left;
+  margin: 140px  0 0 140px;
+  color: #fff;
+}
+header .left .title{
+  padding-top: 20px;
+  font-size: 80px;
+  font-family: 'NanumSquareNeoExtraBold';
+  white-space: nowrap;
+  /*text-shadow: 2px 2px 5px rgba(51, 51, 51, 0.294);*/
+  color: rgba(255, 255, 255, 0.869);
+}
+header .left .text{
+  margin-top: 100px;
+  font-family: 'NanumSquareNeoLight';
+  font-size: 13px;
+}
+
+
+
+header .right{
+  float: right;
+  width: 270px;
+  height: 300px;
+  margin: 140px  140px 0 40px;
+  background-color: rgba(255, 255, 255, 0.29);
+  border-radius: 30px;
+}
+header .right .title{
+  height: 20px;
+  border-bottom: 1px dotted rgba(72, 72, 72, 0.514);
+  padding: 12px  0 10px 0px;
+  font-family: 'NanumSquareBold';
+  font-size: 14px;
+  text-align: center;
+}
+header .right .date{
+  font-family: 'NanumSquare';
+  float: right;
+  font-size: xx-small;
+  padding: 8px;
+  color: rgba(255, 255, 255, 0.292);
+}
+header .right ol{
+  margin: 20px 30px;
+  font-style: italic;
+}
+header .right li{
+  font-family: 'NanumSquareRound';
+  font-size: 10px;
+  font-weight: bolder;
+  margin: 7px 0;
+  padding: 0 0 0 25px;
+  text-align: left;
+}
+
+/**************section*************/
+section{
+  padding-top: 10px;
+  position: relative;
+  margin: 0 auto;
+  width: 1200px;
+}
+section .box1{
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 1px 2px 15px 0 rgb(0 0 0 / 10%);
+  margin: 25px;
+}
+
+section .none{
+  margin-top: 60px;
+  font-size: large;
+  font-family: 'NanumSquareNeoBold';
+  text-align: center;
+}
+section .none div{
+  margin: 20px;
+  font-family: 'NanumSquareNeoHeavy';
+  font-size: 200px;
+}
+
+
+/***************top***************/
+.top{
+  text-align: center;
+}
+.top select{
+  width: 90%;
+  height: 80px;
+  font-size: 35px;
+  text-align: center;
+  font-weight: 900;
+  font-family: 'NanumSquareRound';
+}
+.top select:focus{
+  border: none;
+}
+.top select option:hover{
+  background: bisque;
+}
+.top select option{
+  font-weight: lighter;
+  font-family: 'NanumSquareRound';
+  color: rgb(97, 97, 97);
+}
+
+/**************stock box***********/
+
+.stock_box{ 
+  height: 710px; 
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+.stock_box .stock{
+  margin: 25px;
+  font-family: 'NanumSquareNeoHeavy';
+  font-size: 50px;
+  border-bottom: solid 1px rgba(51, 51, 51, 0.203);
+}
+
+
+.stock_box .left{
+  width: 580px;
+  height: 580px;
+  float: left;
+  margin-left: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.stock_box .left::-webkit-scrollbar{ display: none;}
+.stock_box .title{
+  font-family: 'NanumSquareExtraBold';
+  padding-left: 15px;
+}
+.stock_box .title .highlight{
+  font-size: 20px;
+  box-shadow: inset 0 -12px 0 rgba(113, 178, 228, 0.433);
+}
+.mid .left::-webkit-scrollbar{ display: none;}
+.stock_box .left .art2{
+  width: 265px;
+  height: 240px;
+  float: left;
+  margin: 10px;
+  overflow: hidden;
+}
+.stock_box .left .art2 h2{
+  width: 230px;
+  height: 55px;
+  font-size: 20px;
+  margin: 20px;
+  overflow: hidden;
+  font-family: 'NanumSquareExtraBold';
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.stock_box .left .art2_cont{
+  width: 225px;
+  height: 115px;
+  padding: 15px 20px;
+  background-color: rgba(29, 121, 192, 0.217);
+  font-size: 13px;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.stock_box .left .art2_cont:hover{
+  background-image: url('https://image.newsis.com/2022/11/02/NISI20221102_0019417603_web.jpg?rnd=20221102080227');
+  color: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+.stock_box .right{
+  width: 580px;
+  height: 580px;
+  margin-right: 20px;
+  float: right;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.stock_box .right .graph{
+  background-image: url('../CapstoneApp/static/images/삼성전자.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 102% 102%;
+  width: 560px;
+  height: 360px;
+  margin: 10px;
+  color: transparent;
+  font-family: 'NanumSquareNeoExtraBold';
+}
+.stock_box .right .graph:hover{
+  color: rgba(51, 51, 51, 0.673);
+  text-align: center;
+  line-height: 48px;
+  font-size: 12px;
+}
+
+.stock_box .right .none{
+  width: 560px;
+  height: 75px;
+  color: black;
+  font-size: 12px;
+  background: none;
+  font-family: 'NanumSquareNeoBold';
+  text-align: center;
+  padding-top: 25px;
+  margin: 10px;
+}
+.stock_box .right .none a{
+  color: rgb(30, 120, 189);
+  font-family: 'NanumSquareNeoExtraBold';
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.stock_box .right .zoom_in{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(189, 189, 189, 0.74);
+  margin: auto;
+  background-size: 920px 600px;
+  background-position: 90px 60px;
+  border-radius: 0;
+}
+.graph_title{
+  font-family: 'NanumSquareNeoExtraBold';
+  font-size: 25px;
+  position: fixed;
+  top: 88px;
+  left: 418px;
+  right: 0;
+  width: 300px;
+  text-align: center;
+}
+.graph_text{
+  position: fixed;
+  top: 60px;
+  right: 52px;
+  width: 410px;
+  font-size: 118%;
+  font-family: 'NanumJungHagSaeng';
+  background-color: rgba(219, 241, 255, 0.38);
+  padding: 11px 20px;
+}
+.graph_text *{
+  margin: 5px 0;
+}
+.graph_text ul{
+  padding: 0 0 0 25px;
+}
+.graph_text .ref{
+  float: right;
+  text-decoration: underline;
+}
+.hide{
+  left: -9999px;
+}
+
+
+.stock_box .right .analysis{
+  width: 560px;
+  height: 100px;
+  margin: auto;
+}
+.stock_box .right .anl_cont{
+  width: 480px;
+  height: 80px;
+  padding: 10px 40px;
+  font-family: 'NanumSquareNeo';
+  font-size: 13px;
+  line-height: 26px;
+}
+.stock_box .right .anl_cont span{
+  font-family: 'NanumSquareNeoExtraBold';
+}
+
+/************footer************/
+footer{
+  min-height: 50px;
+  padding: 20px 150px;
+  background-color: rgb(218, 218, 218);
+  font-weight: 600;
+  margin-top: 100px;
+}
+

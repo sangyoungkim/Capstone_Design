@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet">
+  <title>공대 속 라이프</title>
+</head>
+<body>
+  <header>
+    <div class="wrap_header">
+      <div class="left">
+        <div class="title">공대  속 라이프</div>
+        <div class="text">실시간 검색어와 연관된 주식 종목을 찾아 머신 러닝을 사용하여 종목의 상승세 또는 하락세를 판단해주는 사이트입니다.   <br>따라서 정확도를 100% 보장하지 않습니다. 또한 주가 예측 값은 어디까지 단순 예측일 뿐이니 해당 주식의 매수 여부는 직접 판단해주시길 바랍니다. 주식을 처음 접하는 분들이나 개미투자자, 또는 실시간 주식 동향에 관심이 있는 투자자 분들께 도움이 되길 바랍니다.
+          </div>
+      </div>
+      <div class="right">
+          <div class="title">실시간 검색어</div>
+          <ol>
+            <li>실시간 검색어지롱</li>
+            <li>실시간 검색어</li>
+            <li>실시간</li>
+            <li>실시간 검색어지롱</li>
+            <li>실시간 검색어지롱 롱 롱</li>
+            <li>실시간 검색어지롱</li>
+            <li>김진우</li>
+            <li>아메리카노</li>
+            <li>실시간 검색어지롱</li>
+            <li>vs code</li>
+          </ol>
+          <div class="date">2022.10. 10 21:00:00</div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="top box1">
+      <select name="main" id="">
+        <option value="코코 이태원 지인"><a href="/{{rts}}">{{rts}}</a> </option>
+        <option value="인스타 오류">인스타 오류</option>
+      </select>
+    </div>
+    <div class="stock_box">
+      <div class="stock">#{{stock1}}</div>
+      <div class="left">
+        <div class="title"><span class="highlight">NEWS</span></div>
+        <div class="box1 art2">
+          <h2>{{stock2}}</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+          <div class="img">ss</div>
+        </div>
+        <div class="box1 art2">
+          <h2>{{stock2}}</h2>
+          <div class="art2_cont">손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다. 보도에 따르면, 네 군데 골절상을 입었고, 영국 현지 시간으로 4일 수술대에 오를 예정이다. </div>
+          <div class="img">ss</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="title"><span class="highlight">GRAPH</span></div>
+        <div class="box1 graph">
+        </div>
+        <div class="title"><span class="highlight">ANALYSIS</span></div>   
+        <div class="box1 analysis"></div>
+      </div>
+    </div>
+
+    <div class="stock_box">
+      <div class="stock">#두산</div>
+      <div class="left">
+        <div class="title"><span class="highlight">NEWS</span></div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+          <div class="img">ss</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다. 보도에 따르면, 네 군데 골절상을 입었고, 영국 현지 시간으로 4일 수술대에 오를 예정이다. </div>
+          <div class="img">ss</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+        <div class="box1 art2">
+          <h2>손흥민, 눈 주위 네 군데 골절…월드컵 위해 수술 앞당겨</h2>
+          <div class="art2_cont">[서울=뉴시스]박지혁 기자 = 한국 축구의 간판 손흥민(30·토트넘)이 경기 중 안와골절 부상을 입었다</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="title"><span class="highlight">GRAPH</span></div>
+        <div class="box1 graph">
+        </div>
+        <div class="title"><span class="highlight">ANALYSIS</span></div>   
+        <div class="box1 analysis"></div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div>@공대 속 라이프</div>
+
+  </footer>
+</body>
+</html>

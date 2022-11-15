@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Dongle:wght@300;400;700&family=Quicksand:wght@300;400&display=swap');
+/*
+font-family: 'NanumSquareLight';
+font-family: 'NanumSquare';
+font-family: 'NanumSquareBold';
+font-family: 'NanumSquareExtraBold';
+font-family: 'NanumSquareAcb';
+font-family: 'NanumSquareAceb';
+font-family: 'NanumSquareAcl';
+font-family: 'NanumSquareAcr';
+*/
+body, div, h1, button{
+  margin: 0;
+  padding: 0;
+}
+body, button, input, select, td, textarea, th {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #333;
+    border: none;
+}
+a, a:hover{
+  text-decoration: none;
+  color: #333;
+}
+button, input{
+  vertical-align: middle;
+}
+button{
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+body{
+  background-color: rgba(230, 230, 233, 0.09);
+}
+
+
+/**********header**********/
+header {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  z-index: 100;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+.wrap_header{
+  display: flex;
+  justify-content: space-between;
+  line-height: 60px;
+  width: 1400px;
+  margin: 0 auto;
+}
+header .inner_header{
+  margin: 0 30px;
+  width: 100px;
+  text-align: center;
+  font-weight: 900;
+}
+
+/***********section*************/
+section{
+  padding-top: 100px;
+  position: relative;
+  margin: 0 auto;
+  width: 1200px;
+}
+section .box1{
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 1px 2px 15px 0 rgb(0 0 0 / 10%);
+  margin: 25px;
+}
+.top{ height: 80px; }
+.mid{ height: 700px;}
+/*.bot{ height: 700px;}*/
+
+
+
+/*************top*************/
+.top{
+  text-align: center;
+}
+.top select{
+  width: 90%;
+  height: 80px;
+  font-size: 35px;
+  text-align: center;
+  font-weight: bolder;
+  font-family: 'NanumSquareExtraBold';
+}
+.top select:focus{
+  border: none;
+}
+.top select option:focus{
+  background: bisque;
+}
+
+/**************middle***********/
+.mid{
+  overflow: hidden;
+}
+.mid div{
+  width: 550px;
+}
+
+.mid .left{
+  height: 630px;
+  float: left;
+  margin: 25px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mid .left .post{
+  padding: 5px;
+}
+.mid .NEWS{
+  font-size: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  color: rgb(29, 122, 192);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.386);
+}
+.mid .left .tag{
+  float: right;
+  margin: 48px 15px 0 0;
+  font-weight: 300;
+  color: rgb(162, 161, 161);
+}
+.mid .left .post h1{
+  padding: 30px 0;
+}
+.mid .left .post p{
+  height: 70%;
+  width: 98%;
+  margin: 0 auto;
+  position: relative;
+}
+.mid .left::-webkit-scrollbar{ display: none;}
+
+.mid .right{
+  overflow: hidden;
+  width: 600px;
+  height: 700px;
+}
+.mid .right .art1{
+  background-image: url(https://images.khan.co.kr/article/2022/11/01/news-p.v1.20221101.9ff4573e22fc43e5a4ba329e42480a83_P1.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  float: left;
+  height: 280px;
+  margin-top: 60px;
+}
+.mid .right .another{
+  display: block;
+  font-size: 30px;
+  font-weight: bolder;
+  font-style: italic;
+  color: rgb(29, 121, 192);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.386);
+  margin: 10px 0 0 25px;
+}
+.mid .right .art2{
+  width: 255px;
+  height: 210px;
+  float: left;
+  margin: 15px 15px 25px 25px;
+  overflow: hidden;
+}
+.mid .right .art2 h2{
+  width: 215px;
+  height: 28px;
+  font-weight: bolder;
+  font-size: 15px;
+  padding: 20px;
+  margin: 0;
+  overflow: hidden;
+}
+.mid .right .art2 p{
+  margin: 5px 0 8px 20px;
+  font-size: 12px;
+}
+.mid .right .art2_cont{
+  width: 215px;
+  height: 50%;
+  padding: 20px;
+  background-color: rgba(29, 121, 192, 0.217);
+  font-size: 10px;
+}
+
+/*************bottom************/
+.bot{
+  padding: 25px;
+}
+.bot .bot_tit{
+  display: inline-block;
+  font-size: 50px;
+  font-weight: bolder;
+  font-style: italic;
+  color: rgb(29, 121, 192);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.386);
+  margin: 0 20px 30px 20px;
+}
+.bot .stock_box{
+  margin: 15px;
+}
+.bot .stock{
+  padding: 8px 12px;
+  background-color: rgba(29, 121, 192, 0.371);
+  border-radius: 30px;
+  font-size: 20px;
+  color: rgb(73, 73, 73);
+  font-family: 'NanumSquareExtraBold';
+}
+
+.bot .cont_box{
+  height: 350px;
+  display: flex;
+}
+.bot .graph{
+  width: 500px;
+  height: 350px;
+}
+.bot #arrow{
+  height: 100px;
+  margin: auto 0;
+}
+.bot .cont{
+
+}
+
+
+/************footer************/
+footer{
+  min-height: 50px;
+  padding: 20px 150px;
+  background-color: rgb(218, 218, 218);
+  font-weight: 600;
+  margin-top: 100px;
+}
+
