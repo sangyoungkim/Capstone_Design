@@ -53,7 +53,7 @@ header::after{
   content: "";
   background: url("../images/back1.jpg");
   position: absolute;
-  background-size: 100% 550px;
+  background-size: 100rem 550px;
   top: 0;
   left: 0;
   z-index: -1;
